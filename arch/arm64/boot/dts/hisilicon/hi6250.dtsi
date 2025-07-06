@@ -6,7 +6,7 @@
  */
 
 #include <dt-bindings/interrupt-controller/arm-gic.h>
-#include <dt-bindings/clock/hi3660-clock.h>
+#include <dt-bindings/clock/hi6250-clock.h>
 #include <dt-bindings/thermal/thermal.h>
 
 / {
@@ -60,10 +60,10 @@
                         device_type = "cpu";
                         reg = <0x0 0x0>;
                         enable-method = "psci";
-                        next-level-cache = <&A53_L2>;
+                        next-level-cache = <&CLUSTER0_L2>;
                         cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
                         capacity-dmips-mhz = <592>;
-                        clocks = <&stub_clock HI3660_CLK_STUB_CLUSTER0>;
+                        clocks = <&stub_clock HI6250_CLK_STUB_CLUSTER0>;
                         operating-points-v2 = <&cluster0_opp>;
                         #cooling-cells = <2>;
                         dynamic-power-coefficient = <110>;
@@ -74,10 +74,10 @@
                         device_type = "cpu";
                         reg = <0x0 0x1>;
                         enable-method = "psci";
-                        next-level-cache = <&A53_L2>;
+                        next-level-cache = <&CLUSTER0_L2>;
                         cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
                         capacity-dmips-mhz = <592>;
-                        clocks = <&stub_clock HI3660_CLK_STUB_CLUSTER0>;
+                        clocks = <&stub_clock HI6250_CLK_STUB_CLUSTER0>;
                         operating-points-v2 = <&cluster0_opp>;
                         #cooling-cells = <2>;
                 };
@@ -87,10 +87,10 @@
                         device_type = "cpu";
                         reg = <0x0 0x2>;
                         enable-method = "psci";
-                        next-level-cache = <&A53_L2>;
+                        next-level-cache = <&CLUSTER0_L2>;
                         cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
                         capacity-dmips-mhz = <592>;
-                        clocks = <&stub_clock HI3660_CLK_STUB_CLUSTER0>;
+                        clocks = <&stub_clock HI6250_CLK_STUB_CLUSTER0>;
                         operating-points-v2 = <&cluster0_opp>;
                         #cooling-cells = <2>;
                 };
@@ -100,10 +100,10 @@
                         device_type = "cpu";
                         reg = <0x0 0x3>;
                         enable-method = "psci";
-                        next-level-cache = <&A53_L2>;
+                        next-level-cache = <&CLUSTER0_L2>;
                         cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
                         capacity-dmips-mhz = <592>;
-                        clocks = <&stub_clock HI3660_CLK_STUB_CLUSTER0>;
+                        clocks = <&stub_clock HI6250_CLK_STUB_CLUSTER0>;
                         operating-points-v2 = <&cluster0_opp>;
                         #cooling-cells = <2>;
                 };
@@ -113,10 +113,10 @@
                         device_type = "cpu";
                         reg = <0x0 0x100>;
                         enable-method = "psci";
-                        next-level-cache = <&A53_L2>;
+                        next-level-cache = <&CLUSTER1_L2>;
                         cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_1>;
                         capacity-dmips-mhz = <1024>;
-                        clocks = <&stub_clock HI3660_CLK_STUB_CLUSTER1>;
+                        clocks = <&stub_clock HI6250_CLK_STUB_CLUSTER1>;
                         operating-points-v2 = <&cluster1_opp>;
                         #cooling-cells = <2>;
                         dynamic-power-coefficient = <550>;
@@ -127,10 +127,10 @@
                         device_type = "cpu";
                         reg = <0x0 0x101>;
                         enable-method = "psci";
-                        next-level-cache = <&A53_L2>;
+                        next-level-cache = <&CLUSTER1_L2>;
                         cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_1>;
                         capacity-dmips-mhz = <1024>;
-                        clocks = <&stub_clock HI3660_CLK_STUB_CLUSTER1>;
+                        clocks = <&stub_clock HI6250_CLK_STUB_CLUSTER1>;
                         operating-points-v2 = <&cluster1_opp>;
                         #cooling-cells = <2>;
                 };
@@ -140,10 +140,10 @@
                         device_type = "cpu";
                         reg = <0x0 0x102>;
                         enable-method = "psci";
-                        next-level-cache = <&A53_L2>;
+                        next-level-cache = <&CLUSTER1_L2>;
                         cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_1>;
                         capacity-dmips-mhz = <1024>;
-                        clocks = <&stub_clock HI3660_CLK_STUB_CLUSTER1>;
+                        clocks = <&stub_clock HI6250_CLK_STUB_CLUSTER1>;
                         operating-points-v2 = <&cluster1_opp>;
                         #cooling-cells = <2>;
                 };
@@ -153,10 +153,10 @@
                         device_type = "cpu";
                         reg = <0x0 0x103>;
                         enable-method = "psci";
-                        next-level-cache = <&A53_L2>;
+                        next-level-cache = <&CLUSTER1_L2>;
                         cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_1>;
                         capacity-dmips-mhz = <1024>;
-                        clocks = <&stub_clock HI3660_CLK_STUB_CLUSTER1>;
+                        clocks = <&stub_clock HI6250_CLK_STUB_CLUSTER1>;
                         operating-points-v2 = <&cluster1_opp>;
                         #cooling-cells = <2>;
                 };
@@ -191,11 +191,17 @@
                         };
                 };
 
-                A53_L2: l2-cache0 {
-                        compatible = "cache";
-                        cache-level = <2>;
-                        cache-unified;
-                };
+		CLUSTER0_L2: l2-cache0 {
+			compatible = "cache";
+			cache-level = <2>;
+			cache-unified;
+		};
+
+		CLUSTER1_L2: l2-cache1 {
+			compatible = "cache";
+			cache-level = <2>;
+			cache-unified;
+		};
         };
 
         cluster0_opp: opp-table-0 {
@@ -269,53 +275,40 @@
         };
 
         gic: interrupt-controller@e82b0000 {
-                compatible = "arm,gic-400";
-                reg = <0x0 0xe82b1000 0 0x1000>, /* GICD */
-                      <0x0 0xe82b2000 0 0x2000>, /* GICC */
-                      <0x0 0xe82b4000 0 0x2000>, /* GICH */
-                      <0x0 0xe82b6000 0 0x2000>; /* GICV */
-                #address-cells = <0>;
+                compatible = "arm,cortex-a9-gic";
+																#address-cells = <1>;
                 #interrupt-cells = <3>;
                 interrupt-controller;
-                interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(8) |
-                                         IRQ_TYPE_LEVEL_HIGH)>;
+                reg = <0x0 0xe82b1000 0 0x1000>, /* GICD */
+                      <0x0 0xe82b2000 0 0x1000> /* GICC */ 
         };
 
-        a53-pmu {
-                compatible = "arm,cortex-a53-pmu";
+        pmu {
+                compatible = "arm,armv8-pmuv3";
                 interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
                              <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
                              <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
-                             <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
-                interrupt-affinity = <&cpu0>,
-                                     <&cpu1>,
-                                     <&cpu2>,
-                                     <&cpu3>;
-        };
-
-        a73-pmu {
-                compatible = "arm,cortex-a73-pmu";
-                interrupts = <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
+                             <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
                              <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
                              <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
                              <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
-                interrupt-affinity = <&cpu4>,
+                interrupt-affinity = <&cpu0>,
+                                     <&cpu1>,
+                                     <&cpu2>,
+                                     <&cpu3>,
+																																					<&cpu4>,
                                      <&cpu5>,
                                      <&cpu6>,
                                      <&cpu7>;
-        };
+      };
 
         timer {
                 compatible = "arm,armv8-timer";
                 interrupt-parent = <&gic>;
-                interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) |
-                                          IRQ_TYPE_LEVEL_LOW)>,
-                             <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) |
-                                          IRQ_TYPE_LEVEL_LOW)>,
-                             <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) |
-                                          IRQ_TYPE_LEVEL_LOW)>,
-                             <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) |
-                                          IRQ_TYPE_LEVEL_LOW)>;
+                interrupts = <GIC_PPI 13 0xff08>,
+                             <GIC_PPI 14 0xff08>,
+                             <GIC_PPI 11 0xff08>,
+                             <GIC_PPI 10 0xff08>;
         };
 
         soc {
@@ -388,9 +381,9 @@
                         reg = <0x0 0xfff14000 0x0 0x1000>;
                         interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>,
                                      <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
-                        clocks = <&crg_ctrl HI3660_OSC32K>,
-                                 <&crg_ctrl HI3660_OSC32K>,
-                                 <&crg_ctrl HI3660_OSC32K>;
+                        clocks = <&crg_ctrl HI6250_OSC32K>,
+                                 <&crg_ctrl HI6250_OSC32K>,
+                                 <&crg_ctrl HI6250_OSC32K>;
                         clock-names = "timer1", "timer2", "apb_pclk";
                 };
 
@@ -401,7 +394,7 @@
                         #address-cells = <1>;
                         #size-cells = <0>;
                         clock-frequency = <400000>;
-                        clocks = <&crg_ctrl HI3660_CLK_GATE_I2C0>;
+                        clocks = <&crg_ctrl HI6250_CLK_GATE_I2C0>;
                         resets = <&iomcu_rst 0x20 3>;
                         pinctrl-names = "default";
                         pinctrl-0 = <&i2c0_pmx_func &i2c0_cfg_func>;
@@ -415,7 +408,7 @@
                         #address-cells = <1>;
                         #size-cells = <0>;
                         clock-frequency = <400000>;
-                        clocks = <&crg_ctrl HI3660_CLK_GATE_I2C1>;
+                        clocks = <&crg_ctrl HI6250_CLK_GATE_I2C1>;
                         resets = <&iomcu_rst 0x20 4>;
                         pinctrl-names = "default";
                         pinctrl-0 = <&i2c1_pmx_func &i2c1_cfg_func>;
@@ -429,7 +422,7 @@
                         #address-cells = <1>;
                         #size-cells = <0>;
                         clock-frequency = <400000>;
-                        clocks = <&crg_ctrl HI3660_CLK_GATE_I2C3>;
+                        clocks = <&crg_ctrl HI6250_CLK_GATE_I2C3>;
                         resets = <&crg_rst 0x78 7>;
                         pinctrl-names = "default";
                         pinctrl-0 = <&i2c3_pmx_func &i2c3_cfg_func>;
@@ -443,7 +436,7 @@
                         #address-cells = <1>;
                         #size-cells = <0>;
                         clock-frequency = <400000>;
-                        clocks = <&crg_ctrl HI3660_CLK_GATE_I2C7>;
+                        clocks = <&crg_ctrl HI6250_CLK_GATE_I2C7>;
                         resets = <&crg_rst 0x60 14>;
                         pinctrl-names = "default";
                         pinctrl-0 = <&i2c7_pmx_func &i2c7_cfg_func>;
@@ -454,8 +447,8 @@
                         compatible = "arm,pl011", "arm,primecell";
                         reg = <0x0 0xfdf02000 0x0 0x1000>;
                         interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
-                        clocks = <&crg_ctrl HI3660_CLK_MUX_UART0>,
-                                 <&crg_ctrl HI3660_PCLK>;
+                        clocks = <&crg_ctrl HI6250_CLK_MUX_UART0>,
+                                 <&crg_ctrl HI6250_PCLK>;
                         clock-names = "uartclk", "apb_pclk";
                         pinctrl-names = "default";
                         pinctrl-0 = <&uart0_pmx_func &uart0_cfg_func>;
@@ -468,8 +461,8 @@
                         interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>;
                         dma-names = "rx", "tx";
                         dmas = <&dma0 2 &dma0 3>;
-                        clocks = <&crg_ctrl HI3660_CLK_GATE_UART1>,
-                                 <&crg_ctrl HI3660_CLK_GATE_UART1>;
+                        clocks = <&crg_ctrl HI6250_CLK_GATE_UART1>,
+                                 <&crg_ctrl HI6250_CLK_GATE_UART1>;
                         clock-names = "uartclk", "apb_pclk";
                         pinctrl-names = "default";
                         pinctrl-0 = <&uart1_pmx_func &uart1_cfg_func>;
@@ -482,8 +475,8 @@
                         interrupts = <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH>;
                         dma-names = "rx", "tx";
                         dmas = <&dma0 4 &dma0 5>;
-                        clocks = <&crg_ctrl HI3660_CLK_GATE_UART2>,
-                                 <&crg_ctrl HI3660_PCLK>;
+                        clocks = <&crg_ctrl HI6250_CLK_GATE_UART2>,
+                                 <&crg_ctrl HI6250_PCLK>;
                         clock-names = "uartclk", "apb_pclk";
                         pinctrl-names = "default";
                         pinctrl-0 = <&uart2_pmx_func &uart2_cfg_func>;
@@ -494,8 +487,8 @@
                         compatible = "arm,pl011", "arm,primecell";
                         reg = <0x0 0xffd74000 0x0 0x1000>;
                         interrupts = <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>;
-                        clocks = <&crg_ctrl HI3660_FACTOR_UART3>,
-                                 <&crg_ctrl HI3660_PCLK>;
+                        clocks = <&crg_ctrl HI6250_FACTOR_UART3>,
+                                 <&crg_ctrl HI6250_PCLK>;
                         clock-names = "uartclk", "apb_pclk";
                         pinctrl-names = "default";
                         pinctrl-0 = <&uart3_pmx_func &uart3_cfg_func>;
@@ -508,8 +501,8 @@
                         interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>;
                         dma-names = "rx", "tx";
                         dmas = <&dma0 6 &dma0 7>;
-                        clocks = <&crg_ctrl HI3660_CLK_GATE_UART4>,
-                                 <&crg_ctrl HI3660_CLK_GATE_UART4>;
+                        clocks = <&crg_ctrl HI6250_CLK_GATE_UART4>,
+                                 <&crg_ctrl HI6250_CLK_GATE_UART4>;
                         clock-names = "uartclk", "apb_pclk";
                         pinctrl-names = "default";
                         pinctrl-0 = <&uart4_pmx_func &uart4_cfg_func>;
@@ -522,8 +515,8 @@
                         interrupts = <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
                         dma-names = "rx", "tx";
                         dmas = <&dma0 8 &dma0 9>;
-                        clocks = <&crg_ctrl HI3660_CLK_GATE_UART5>,
-                                 <&crg_ctrl HI3660_CLK_GATE_UART5>;
+                        clocks = <&crg_ctrl HI6250_CLK_GATE_UART5>,
+                                 <&crg_ctrl HI6250_CLK_GATE_UART5>;
                         clock-names = "uartclk", "apb_pclk";
                         pinctrl-names = "default";
                         pinctrl-0 = <&uart5_pmx_func &uart5_cfg_func>;
@@ -534,8 +527,8 @@
                         compatible = "arm,pl011", "arm,primecell";
                         reg = <0x0 0xfff32000 0x0 0x1000>;
                         interrupts = <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
-                        clocks = <&crg_ctrl HI3660_CLK_UART6>,
-                                 <&crg_ctrl HI3660_PCLK>;
+                        clocks = <&crg_ctrl HI6250_CLK_UART6>,
+                                 <&crg_ctrl HI6250_PCLK>;
                         clock-names = "uartclk", "apb_pclk";
                         pinctrl-names = "default";
                         pinctrl-0 = <&uart6_pmx_func &uart6_cfg_func>;
@@ -550,7 +543,7 @@
                         dma-requests = <32>;
                         dma-channel-mask = <0xfffe>;
                         interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>;
-                        clocks = <&crg_ctrl HI3660_CLK_GATE_DMAC>;
+                        clocks = <&crg_ctrl HI6250_CLK_GATE_DMAC>;
                         dma-no-cci;
                         dma-type = "hi3660_dma";
                 };
@@ -569,7 +562,7 @@
                         compatible = "arm,pl031", "arm,primecell";
                         reg = <0x0 0Xfff04000 0x0 0x1000>;
                         interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
-                        clocks = <&crg_ctrl HI3660_PCLK>;
+                        clocks = <&crg_ctrl HI6250_PCLK>;
                         clock-names = "apb_pclk";
                 };
 
@@ -582,7 +575,7 @@
                         gpio-ranges = <&pmx0 1 0 7>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&crg_ctrl HI3660_PCLK_GPIO0>;
+                        clocks = <&crg_ctrl HI6250_PCLK_GPIO0>;
                         clock-names = "apb_pclk";
                 };
 
@@ -595,7 +588,7 @@
                         gpio-ranges = <&pmx0 1 7 7>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&crg_ctrl HI3660_PCLK_GPIO1>;
+                        clocks = <&crg_ctrl HI6250_PCLK_GPIO1>;
                         clock-names = "apb_pclk";
                 };
 
@@ -608,7 +601,7 @@
                         gpio-ranges = <&pmx0 0 14 8>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&crg_ctrl HI3660_PCLK_GPIO2>;
+                        clocks = <&crg_ctrl HI6250_PCLK_GPIO2>;
                         clock-names = "apb_pclk";
                 };
 
@@ -621,7 +614,7 @@
                         gpio-ranges = <&pmx0 0 22 8>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&crg_ctrl HI3660_PCLK_GPIO3>;
+                        clocks = <&crg_ctrl HI6250_PCLK_GPIO3>;
                         clock-names = "apb_pclk";
                 };
 
@@ -634,7 +627,7 @@
                         gpio-ranges = <&pmx0 0 30 8>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&crg_ctrl HI3660_PCLK_GPIO4>;
+                        clocks = <&crg_ctrl HI6250_PCLK_GPIO4>;
                         clock-names = "apb_pclk";
                 };
 
@@ -647,7 +640,7 @@
                         gpio-ranges = <&pmx0 0 38 8>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&crg_ctrl HI3660_PCLK_GPIO5>;
+                        clocks = <&crg_ctrl HI6250_PCLK_GPIO5>;
                         clock-names = "apb_pclk";
                 };
 
@@ -660,7 +653,7 @@
                         gpio-ranges = <&pmx0 0 46 8>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&crg_ctrl HI3660_PCLK_GPIO6>;
+                        clocks = <&crg_ctrl HI6250_PCLK_GPIO6>;
                         clock-names = "apb_pclk";
                 };
 
@@ -673,7 +666,7 @@
                         gpio-ranges = <&pmx0 0 54 8>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&crg_ctrl HI3660_PCLK_GPIO7>;
+                        clocks = <&crg_ctrl HI6250_PCLK_GPIO7>;
                         clock-names = "apb_pclk";
                 };
 
@@ -686,7 +679,7 @@
                         gpio-ranges = <&pmx0 0 62 8>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&crg_ctrl HI3660_PCLK_GPIO8>;
+                        clocks = <&crg_ctrl HI6250_PCLK_GPIO8>;
                         clock-names = "apb_pclk";
                 };
 
@@ -699,7 +692,7 @@
                         gpio-ranges = <&pmx0 0 70 8>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&crg_ctrl HI3660_PCLK_GPIO9>;
+                        clocks = <&crg_ctrl HI6250_PCLK_GPIO9>;
                         clock-names = "apb_pclk";
                 };
 
@@ -712,7 +705,7 @@
                         gpio-ranges = <&pmx0 0 78 8>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&crg_ctrl HI3660_PCLK_GPIO10>;
+                        clocks = <&crg_ctrl HI6250_PCLK_GPIO10>;
                         clock-names = "apb_pclk";
                 };
 
@@ -725,7 +718,7 @@
                         gpio-ranges = <&pmx0 0 86 8>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&crg_ctrl HI3660_PCLK_GPIO11>;
+                        clocks = <&crg_ctrl HI6250_PCLK_GPIO11>;
                         clock-names = "apb_pclk";
                 };
 
@@ -738,7 +731,7 @@
                         gpio-ranges = <&pmx0 0 94 3 &pmx0 7 101 1>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&crg_ctrl HI3660_PCLK_GPIO12>;
+                        clocks = <&crg_ctrl HI6250_PCLK_GPIO12>;
                         clock-names = "apb_pclk";
                 };
 
@@ -751,7 +744,7 @@
                         gpio-ranges = <&pmx0 0 102 8>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&crg_ctrl HI3660_PCLK_GPIO13>;
+                        clocks = <&crg_ctrl HI6250_PCLK_GPIO13>;
                         clock-names = "apb_pclk";
                 };
 
@@ -764,7 +757,7 @@
                         gpio-ranges = <&pmx0 0 110 8>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&crg_ctrl HI3660_PCLK_GPIO14>;
+                        clocks = <&crg_ctrl HI6250_PCLK_GPIO14>;
                         clock-names = "apb_pclk";
                 };
 
@@ -777,7 +770,7 @@
                         gpio-ranges = <&pmx0 0 118 6>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&crg_ctrl HI3660_PCLK_GPIO15>;
+                        clocks = <&crg_ctrl HI6250_PCLK_GPIO15>;
                         clock-names = "apb_pclk";
                 };
 
@@ -789,7 +782,7 @@
                         #gpio-cells = <2>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&crg_ctrl HI3660_PCLK_GPIO16>;
+                        clocks = <&crg_ctrl HI6250_PCLK_GPIO16>;
                         clock-names = "apb_pclk";
                 };
 
@@ -801,7 +794,7 @@
                         #gpio-cells = <2>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&crg_ctrl HI3660_PCLK_GPIO17>;
+                        clocks = <&crg_ctrl HI6250_PCLK_GPIO17>;
                         clock-names = "apb_pclk";
                 };
 
@@ -814,7 +807,7 @@
                         gpio-ranges = <&pmx2 0 0 8>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&crg_ctrl HI3660_PCLK_GPIO18>;
+                        clocks = <&crg_ctrl HI6250_PCLK_GPIO18>;
                         clock-names = "apb_pclk";
                 };
 
@@ -827,7 +820,7 @@
                         gpio-ranges = <&pmx2 0 8 4>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&crg_ctrl HI3660_PCLK_GPIO19>;
+                        clocks = <&crg_ctrl HI6250_PCLK_GPIO19>;
                         clock-names = "apb_pclk";
                 };
 
@@ -840,7 +833,7 @@
                         gpio-ranges = <&pmx1 0 0 6>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&crg_ctrl HI3660_PCLK_GPIO20>;
+                        clocks = <&crg_ctrl HI6250_PCLK_GPIO20>;
                         clock-names = "apb_pclk";
                 };
 
@@ -853,7 +846,7 @@
                         interrupt-controller;
                         #interrupt-cells = <2>;
                         gpio-ranges = <&pmx3 0 0 6>;
-                        clocks = <&crg_ctrl HI3660_PCLK_GPIO21>;
+                        clocks = <&crg_ctrl HI6250_PCLK_GPIO21>;
                         clock-names = "apb_pclk";
                 };
 
@@ -867,7 +860,7 @@
                         gpio-ranges = <&pmx4 2 0 6>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&sctrl HI3660_PCLK_AO_GPIO0>;
+                        clocks = <&sctrl HI6250_PCLK_AO_GPIO0>;
                         clock-names = "apb_pclk";
                 };
 
@@ -881,7 +874,7 @@
                         gpio-ranges = <&pmx4 0 6 7>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&sctrl HI3660_PCLK_AO_GPIO1>;
+                        clocks = <&sctrl HI6250_PCLK_AO_GPIO1>;
                         clock-names = "apb_pclk";
                 };
 
@@ -895,7 +888,7 @@
                         gpio-ranges = <&pmx4 0 13 8>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&sctrl HI3660_PCLK_AO_GPIO2>;
+                        clocks = <&sctrl HI6250_PCLK_AO_GPIO2>;
                         clock-names = "apb_pclk";
                 };
 
@@ -909,7 +902,7 @@
                         gpio-ranges = <&pmx4 0 21 4 &pmx4 5 25 3>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&sctrl HI3660_PCLK_AO_GPIO3>;
+                        clocks = <&sctrl HI6250_PCLK_AO_GPIO3>;
                         clock-names = "apb_pclk";
                 };
 
@@ -923,7 +916,7 @@
                         gpio-ranges = <&pmx4 0 28 8>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&sctrl HI3660_PCLK_AO_GPIO4>;
+                        clocks = <&sctrl HI6250_PCLK_AO_GPIO4>;
                         clock-names = "apb_pclk";
                 };
 
@@ -937,7 +930,7 @@
                         gpio-ranges = <&pmx4 0 36 6>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&sctrl HI3660_PCLK_AO_GPIO5>;
+                        clocks = <&sctrl HI6250_PCLK_AO_GPIO5>;
                         clock-names = "apb_pclk";
                 };
 
@@ -949,7 +942,7 @@
                         #gpio-cells = <2>;
                         interrupt-controller;
                         #interrupt-cells = <2>;
-                        clocks = <&sctrl HI3660_PCLK_AO_GPIO6>;
+                        clocks = <&sctrl HI6250_PCLK_AO_GPIO6>;
                         clock-names = "apb_pclk";
                 };
 
@@ -959,7 +952,7 @@
                         #address-cells = <1>;
                         #size-cells = <0>;
                         interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>;
-                        clocks = <&crg_ctrl HI3660_CLK_GATE_SPI2>, <&crg_ctrl HI3660_CLK_GATE_SPI2>;
+                        clocks = <&crg_ctrl HI6250_CLK_GATE_SPI2>, <&crg_ctrl HI6250_CLK_GATE_SPI2>;
                         clock-names = "sspclk", "apb_pclk";
                         pinctrl-names = "default";
                         pinctrl-0 = <&spi2_pmx_func &spi2_cfg_func>;
@@ -974,7 +967,7 @@
                         #address-cells = <1>;
                         #size-cells = <0>;
                         interrupts = <GIC_SPI 312 IRQ_TYPE_LEVEL_HIGH>;
-                        clocks = <&crg_ctrl HI3660_CLK_GATE_SPI3>, <&crg_ctrl HI3660_CLK_GATE_SPI3>;
+                        clocks = <&crg_ctrl HI6250_CLK_GATE_SPI3>, <&crg_ctrl HI6250_CLK_GATE_SPI3>;
                         clock-names = "sspclk", "apb_pclk";
                         pinctrl-names = "default";
                         pinctrl-0 = <&spi3_pmx_func &spi3_cfg_func>;
@@ -1010,11 +1003,11 @@
                                          &gic GIC_SPI 284 IRQ_TYPE_LEVEL_HIGH>,
                                         <0x0 0 0 4
                                          &gic GIC_SPI 285 IRQ_TYPE_LEVEL_HIGH>;
-                        clocks = <&crg_ctrl HI3660_PCIEPHY_REF>,
-                                 <&crg_ctrl HI3660_CLK_GATE_PCIEAUX>,
-                                 <&crg_ctrl HI3660_PCLK_GATE_PCIE_PHY>,
-                                 <&crg_ctrl HI3660_PCLK_GATE_PCIE_SYS>,
-                                 <&crg_ctrl HI3660_ACLK_GATE_PCIE>;
+                        clocks = <&crg_ctrl HI6250_PCIEPHY_REF>,
+                                 <&crg_ctrl HI6250_CLK_GATE_PCIEAUX>,
+                                 <&crg_ctrl HI6250_PCLK_GATE_PCIE_PHY>,
+                                 <&crg_ctrl HI6250_PCLK_GATE_PCIE_SYS>,
+                                 <&crg_ctrl HI6250_ACLK_GATE_PCIE>;
                         clock-names = "pcie_phy_ref", "pcie_aux",
                                       "pcie_apb_phy", "pcie_apb_sys",
                                       "pcie_aclk";
@@ -1030,8 +1023,8 @@
                                 <0x0 0xff3b1000 0x0 0x1000>;
                         interrupt-parent = <&gic>;
                         interrupts = <GIC_SPI 278 IRQ_TYPE_LEVEL_HIGH>;
-                        clocks = <&crg_ctrl HI3660_CLK_GATE_UFSIO_REF>,
-                                <&crg_ctrl HI3660_CLK_GATE_UFSPHY_CFG>;
+                        clocks = <&crg_ctrl HI6250_CLK_GATE_UFSIO_REF>,
+                                <&crg_ctrl HI6250_CLK_GATE_UFSPHY_CFG>;
                         clock-names = "ref_clk", "phy_clk";
                         freq-table-hz = <0 0>,
                                         <0 0>;
@@ -1047,8 +1040,8 @@
                         #address-cells = <1>;
                         #size-cells = <0>;
                         interrupts = <GIC_SPI 139 IRQ_TYPE_LEVEL_HIGH>;
-                        clocks = <&crg_ctrl HI3660_CLK_GATE_SD>,
-                                <&crg_ctrl HI3660_HCLK_GATE_SD>;
+                        clocks = <&crg_ctrl HI6250_CLK_GATE_SD>,
+                                <&crg_ctrl HI6250_HCLK_GATE_SD>;
                         clock-names = "ciu", "biu";
                         clock-frequency = <3200000>;
                         resets = <&crg_rst 0x94 18>;
@@ -1065,8 +1058,8 @@
                         #address-cells = <0x1>;
                         #size-cells = <0x0>;
                         interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
-                        clocks = <&crg_ctrl HI3660_CLK_GATE_SDIO0>,
-                                 <&crg_ctrl HI3660_HCLK_GATE_SDIO0>;
+                        clocks = <&crg_ctrl HI6250_CLK_GATE_SDIO0>,
+                                 <&crg_ctrl HI6250_HCLK_GATE_SDIO0>;
                         clock-names = "ciu", "biu";
                         resets = <&crg_rst 0x94 20>;
                         reset-names = "reset";
@@ -1078,8 +1071,8 @@
                         compatible = "arm,sp805", "arm,primecell";
                         reg = <0x0 0xe8a06000 0x0 0x1000>;
                         interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
-                        clocks = <&crg_ctrl HI3660_OSC32K>,
-                                 <&crg_ctrl HI3660_OSC32K>;
+                        clocks = <&crg_ctrl HI6250_OSC32K>,
+                                 <&crg_ctrl HI6250_OSC32K>;
                         clock-names = "wdog_clk", "apb_pclk";
                 };
 
@@ -1087,8 +1080,8 @@
                         compatible = "arm,sp805", "arm,primecell";
                         reg = <0x0 0xe8a07000 0x0 0x1000>;
                         interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
-                        clocks = <&crg_ctrl HI3660_OSC32K>,
-                                 <&crg_ctrl HI3660_OSC32K>;
+                        clocks = <&crg_ctrl HI6250_OSC32K>,
+                                 <&crg_ctrl HI6250_OSC32K>;
                         clock-names = "wdog_clk", "apb_pclk";
                 };
 
@@ -1161,11 +1154,11 @@
                         compatible = "snps,dwc3";
                         reg = <0x0 0xff100000 0x0 0x100000>;
 
-                        clocks = <&crg_ctrl HI3660_CLK_ABB_USB>,
-                                 <&crg_ctrl HI3660_ACLK_GATE_USB3OTG>;
+                        clocks = <&crg_ctrl HI6250_CLK_ABB_USB>,
+                                 <&crg_ctrl HI6250_ACLK_GATE_USB3OTG>;
                         clock-names = "ref", "bus_early";
 
-                        assigned-clocks = <&crg_ctrl HI3660_ACLK_GATE_USB3OTG>;
+                        assigned-clocks = <&crg_ctrl HI6250_ACLK_GATE_USB3OTG>;
                         assigned-clock-rates = <229000000>;
 
                         resets = <&crg_rst 0x90 8>,
